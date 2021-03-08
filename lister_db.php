@@ -1,23 +1,15 @@
 <?php
 
 /*
-
 LISTER - QUICK START :
-
 configure file  : lister_config.php
 Then configure telegram API ending (look for web.telegram.org)
 to run manually : php lister_db.php
-
 Put crontabs to run it automatically, to refresh it time to tmie and to clean it :
-
 Examples of cronjobs to add on server so that lister works nicely
-
 5 4 * * *       root /usr/bin/php /root/lister_db.php
-
 0 0 1 * *       root rm -f /root/lister/found.*
-
 5 5 1 * 2       root rm -f /root/lister/information.json;rm -f /root/lister/db/*
-
 */
 
 date_default_timezone_set ('GMT');
@@ -55,7 +47,7 @@ function _syslog($subject,$info)
 
 function alerting ($string)
 {
- $url = "https://web.telegram.org?putyourbotinformation?message=".$string;     // target for sending alert
+ $url = "http://api.sec6.net/mon/files.php?s=".$string;     // target for sending alert
  file_get_contents ("$url");
 }
 
@@ -131,7 +123,7 @@ insert_db ($ff, $date)
           if($mode==1) {
             array_push ($found, "$ff $date (mod) ($fz)");
             $fp = fopen ($file, "w");
-            fputs ($fp, $ff." ".$date."\n");
+            fputs ($fp, $ff." ".$fz."\n");
             fclose ($fp);
           }
 
@@ -139,6 +131,8 @@ insert_db ($ff, $date)
 
     }
 
+
+}
 
 // acl for .php is in function - no need of check() anymore
 
