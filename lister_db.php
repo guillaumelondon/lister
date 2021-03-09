@@ -9,7 +9,7 @@ Put crontabs to run it automatically, to refresh it time to tmie and to clean it
 Examples of cronjobs to add on server so that lister works nicely
 5 4 * * *       root /usr/bin/php /root/lister_db.php
 0 0 1 * *       root rm -f /root/lister/found.*
-5 5 1 * 2       root rm -f /root/lister/information.json;rm -f /root/lister/db/*
+5 3 1 * 2       root rm -f /root/lister/information.json;rm -f /root/lister/db/*
 */
 
 date_default_timezone_set ('GMT');
